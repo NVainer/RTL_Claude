@@ -2,6 +2,16 @@
 dist/
 *.zip
 
+# Extension signing key + packed binary — NEVER commit the .pem (it signs updates)
+*.pem
+*.crx
+
+# Python (from tools/ scripts)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db
