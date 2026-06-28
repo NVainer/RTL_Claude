@@ -1,0 +1,37 @@
+/* Styles only apply when the root flag is present (set by content.js when enabled). */
+
+/* dir="auto" lets the browser resolve direction per paragraph (first strong char).
+   text-align: start then follows that — right for Hebrew lines, left for English. */
+html.crtl-on [dir="auto"] {
+  text-align: start;
+}
+
+/* Numbered/bulleted lists: markers follow the resolved direction. */
+html.crtl-on ol[dir="auto"],
+html.crtl-on ul[dir="auto"] {
+  text-align: start;
+}
+
+/* Input composer (ProseMirror): auto-direct each line by its first strong char.
+   unicode-bidi: plaintext survives ProseMirror's re-renders (a JS dir="rtl"
+   attribute gets wiped on every keystroke; a CSS rule does not). */
+html.crtl-on div.ProseMirror,
+html.crtl-on [contenteditable="true"] {
+  unicode-bidi: plaintext;
+  text-align: start;
+}
+html.crtl-on div.ProseMirror p,
+html.crtl-on [contenteditable="true"] p {
+  unicode-bidi: plaintext;
+  text-align: start;
+}
+
+/* Code is ALWAYS left-to-right, even inside an RTL block and even with Hebrew comments. */
+html.crtl-on pre,
+html.crtl-on code,
+html.crtl-on kbd,
+html.crtl-on samp {
+  direction: ltr !important;
+  text-align: left;
+  unicode-bidi: embed;
+}
