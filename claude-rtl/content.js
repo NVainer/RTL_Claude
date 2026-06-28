@@ -3,9 +3,8 @@
 
   const KEY = "crtlEnabled";
 
-  // Hebrew + Arabic (incl. presentation forms) and Latin ranges.
+  // Hebrew + Arabic (incl. presentation forms).
   const RTL = /[\u0590-\u05FF\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB1D-\uFDFF\uFE70-\uFEFF]/g;
-  const LTR = /[A-Za-z\u00C0-\u024F]/g;
 
   // Block-level text elements we may flip.
   const SELECTOR = "p, li, h1, h2, h3, h4, h5, h6, blockquote, td, th, summary";
@@ -102,7 +101,8 @@
     start();
   });
 
-  chrome.storage.onChanged.addListener((changes) => {
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== "local") return; // only our own local store drives the toggle
     if (KEY in changes) {
       enabled = changes[KEY].newValue !== false;
       enabled ? enable() : disable();
