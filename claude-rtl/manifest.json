@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Claude RTL (Custom)",
+  "name": "Claude RTL — Hebrew & Arabic",
   "version": "1.0.0",
   "description": "Per-paragraph RTL for Hebrew/Arabic on claude.ai. Code blocks stay LTR.",
   "permissions": ["storage"],
